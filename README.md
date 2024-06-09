@@ -1,7 +1,4 @@
 # CASE STUDY: Bellabeat Fitness Data Analysis 
-##### Author: Emi Ly
-
-##### Date: October 5, 2021
 
 ##### [Tableau Dashboard](https://public.tableau.com/app/profile/emily.liang7497/viz/BellabeatFitnessDataAnalysisDashboard/GiantDashboard)
 
