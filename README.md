@@ -29,7 +29,7 @@ The dataset has 18 CSV. The data also follow a ROCCC approach:
 - Original: The data is from 30 FitBit users who consented to the submission of personal tracker data via Amazon  Mechanical Turk.
 - Comprehensive: Data minute-level output for physical activity, heart rate, and sleep monitoring. While the data tracks many factors in the user activity and sleep, but the sample size is small and most data is recorded during certain days of the week. 
 - Current: Data is from March 2016 to May 2016. Data is not current so the users habit may be different now. 
-- Cited: Unknown. 
+- Cited: Unknown
 
 ⛔ The dataset has limitations:
 
