@@ -56,9 +56,6 @@ Check to see if we have 30 users using ```n_distinct()```. The dataset has 33 us
 ![image](https://user-images.githubusercontent.com/62857660/136279328-61059fcf-1554-478a-9dd6-680d243df486.png)
 
 Merge the three tables:
-```
-merged_data <- merge(merged_activity_sleep, weight, by = c("Id"), all=TRUE)
-```
 
 Clean the data to prepare for analysis in 4. Analyze!
 
@@ -75,40 +72,14 @@ Clean the data to prepare for analysis in 4. Analyze!
 
 ### Summary:
 Check min, max, mean, median and any outliers. Avg weight is 135 pounds with BMI of 24 and burn 2050 calories. Avg steps is 10200, max is almost triple that 36000 steps. Users spend on avg 12 hours a day in sedentary minutes, 4 hours lightly active, only half hour in fairly+very active! Users also gets about 7 hour of sleep. 
-```
-merged_data %>%
-  dplyr::select(Weekday,
-         TotalSteps,
-         TotalDistance,
-         VeryActiveMinutes,
-         FairlyActiveMinutes,
-         LightlyActiveMinutes,
-         SedentaryMinutes,
-         Calories,
-         TotalMinutesAsleep,
-         TotalTimeInBed,
-         WeightPounds,
-         BMI
-         ) %>%
-  summary()
-```
+
 ![summary](https://user-images.githubusercontent.com/62857660/136262678-18377ce4-3443-48a4-b108-eba6a273f963.PNG)
 
 ### Active Minutes:
 [Back to Analyze](#4-analyze)
 
 Percentage of active minutes in the four categories: very active, fairly active, lightly active and sedentary. From the pie chart, we can see that most users spent 81.3% of their daily activity in sedentary minutes and only 1.74% in very active minutes. 
-```
-percentage <- data.frame(
-  level=c("Sedentary", "Lightly", "Fairly", "Very Active"),
-  minutes=c(sedentary_percentage,lightly_percentage,fairly_percentage,active_percentage)
-)
 
-plot_ly(percentage, labels = ~level, values = ~minutes, type = 'pie',textposition = 'outside',textinfo = 'label+percent') %>%
-  layout(title = 'Activity Level Minutes',
-         xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
-         yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
-```
 
 ![newplot](https://user-images.githubusercontent.com/62857660/136252582-96e1f52a-dfe0-4247-a882-82d179d9b2b9.png)
 
