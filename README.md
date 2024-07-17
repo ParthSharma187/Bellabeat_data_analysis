@@ -87,12 +87,7 @@ Percentage of active minutes in the four categories: very active, fairly active,
 The American Heart Association and World Health Organization recommend at least 150 minutes of moderate-intensity activity or 75 minutes of vigorous activity, or a combination of both, each week. That means it needs an daily goal of 21.4 minutes of FairlyActiveMinutes or 10.7 minutes of VeryActiveMinutes.
 
 In our dataset, **30 users** met fairly active minutes or very active minutes.
-```
-active_users <- daily_activity %>%
-  filter(FairlyActiveMinutes >= 21.4 | VeryActiveMinutes>=10.7) %>% 
-  group_by(Id) %>% 
-  count(Id) 
-```
+
 
 ### Noticeable Day:
 [Back to Analyze](#4-analyze)
@@ -110,20 +105,12 @@ The bar graph shows that there is a jump on Saturday: user spent LESS time in se
 [Back to Analyze](#4-analyze)
 
 Let's look at how active the users are per hourly in total steps. From 5PM to 7PM the users take the most steps. 
-```
-ggplot(data=hourly_step, aes(x=Hour, y=StepTotal, fill=Hour))+
-  geom_bar(stat="identity")+
-  labs(title="Hourly Steps")
-```
+
 ![image](https://user-images.githubusercontent.com/62857660/136235391-bb22c15d-93aa-494d-bce2-76a984274fb7.png)
 
 
 How active the users are weekly in total steps. Tuesday and Saturdays the users take the most steps. 
-```
-ggplot(data=merged_data, aes(x=Weekday, y=TotalSteps, fill=Weekday))+ 
-  geom_bar(stat="identity")+
-  ylab("Total Steps")
-```
+
 ![image](https://user-images.githubusercontent.com/62857660/136252217-53d355de-2c25-4185-8e6d-27ba087573ae.png)
 
 
@@ -134,13 +121,6 @@ ggplot(data=merged_data, aes(x=Weekday, y=TotalSteps, fill=Weekday))+
 
 The more active that you're, the more steps you take, and the more calories you will burn. This is an obvious fact, but we can still look into the data to find any interesting. Here we see that some users who are sedentary, take minimal steps, but still able to burn over 1500 to 2500 calories compare to users who are more active, take more steps, but still burn similar calories.
 
-```
-ggplot(data=daily_activity, aes(x=TotalSteps, y = Calories, color=SedentaryMinutes))+ 
-  geom_point()+ 
-  stat_smooth(method=lm)+
-  scale_color_gradient(low="steelblue", high="orange")
-
-```
 ![image](https://user-images.githubusercontent.com/62857660/136260311-a379b303-76ac-426c-9c30-ea2695569632.png)
 
 Comparing the four active levels to the total steps, we see most data is concentrated on users who take about 5000 to 15000 steps a day. These users spent an average between 8 to 13 hours in sedentary, 5 hours in lightly active, and 1 to 2 hour for fairly and very active. 
@@ -156,30 +136,14 @@ According to [this healthline.com article](https://www.healthline.com/nutrition/
 
 According to article: [Fitbit Sleep Study](https://blog.fitbit.com/sleep-study/#:~:text=The%20average%20Fitbit%20user%20is,is%20spent%20restless%20or%20awake.&text=People%20who%20sleep%205%20hours,the%20beginning%20of%20the%20night.), 55 minutes are spent awake in bed before going to sleep. We have 13 users in our dataset spend 55 minutes awake before alseep. 
 
-```
-awake_in_bed <- mutate(sleep_day, AwakeTime = TotalTimeInBed - TotalMinutesAsleep)
-awake_in_bed <- awake_in_bed %>% 
-  filter(AwakeTime >= 55) %>% 
-  group_by(Id) %>% 
-  arrange(AwakeTime) 
-```
+
 
 We can use regression analysis look at the variables and correlation. For R-squared, 0% indicates that the model explains none of the variability of the response data around its mean. Higher % indicates that the model explains more of the variability of the response data around its mean. Postive slope means variables increase/decrease with each other, and negative means one variable go up and the other go down. We want to look at if users who spend more time in sedentary minutes spend more time sleeping as well. We can use regression analysis ```lm()``` to check for the dependent and indepedent variables. We also find that how many minutes an user asleep have an very weak correlation with how long they spend in sedentary minutes during the day.  
-```
-sedentary_vs_sleep.mod <- lm(SedentaryMinutes ~ TotalMinutesAsleep, data = merged_data)
-summary(sedentary_vs_sleep.mod)
-```
+
 ![calvssteps2](https://user-images.githubusercontent.com/62857660/136107919-65c86392-4f12-4038-b3d3-09166d8d5381.PNG)
 
 How about calories vs asleep? Do people sleep more burn less calories? Plotting the two variables we can see that there is not much a correlation. 
-```
-ggplot(data=merged_data, aes(x=TotalMinutesAsleep, y = Calories, color=TotalMinutesAsleep))+ 
-  geom_point()+ 
-  labs(title="Total Minutes Asleep vs Calories")+
-  xlab("Total Minutes Alseep")+
-  stat_smooth(method=lm)+
-  scale_color_gradient(low="orange", high="steelblue")
-```
+
 ![image](https://user-images.githubusercontent.com/62857660/136283073-360f9a07-e4ef-4307-9c65-4b877f62e58b.png)
 
 
