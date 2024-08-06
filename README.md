@@ -59,7 +59,7 @@ Merge the three tables:
 
 Clean the data to prepare for analysis in 4. Analyze!
 
-## 4. Analyze
+## 4. Analyze.
 [Back to Top](#author-emi-ly)
 
 -  [Summary](#summary)
