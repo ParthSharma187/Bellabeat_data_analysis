@@ -20,7 +20,7 @@ Primary stakeholders: Urška Sršen and Sando Mur, executive team members.
 
 Secondary stakeholders: Bellabeat marketing analytics team.
 
-## 2. Prepare. 
+## 2. Prepare
 Data Source: 30 participants FitBit Fitness Tracker Data from Mobius: https://www.kaggle.com/arashnic/fitbit
 
 The dataset has 18 CSV. The data also follow a ROCCC approach:
